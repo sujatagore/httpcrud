@@ -6,13 +6,18 @@ import { PostComponent } from "./shared/components/post/post.component";
 import { PagenotfoundComponent } from "./shared/components/pagenotfound/pagenotfound.component";
 
 const routes : Routes = [
-    {
-        path: '',
-        component: PostsdashboardComponent
-    },
+    // {
+    //     path: '',
+    //     component: PostsdashboardComponent // if we give 'posts' in navbar routerlink opt
+    // },
     {
         path: 'posts',
         component: PostsdashboardComponent
+    },
+    {
+        path: '',
+        redirectTo: 'posts', // if we give '' in navbar routerlink opt
+        pathMatch: 'full'
     },
     {
         path: 'posts/addPosts',

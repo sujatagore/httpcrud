@@ -1,1 +1,28 @@
-<p>post works!</p>
+<div class="col-md-6 offset-md-3" *ngIf="postsObj;else noPostsObj">
+    <mat-card class="example-card mb-5">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{postsObj.title}}</mat-card-title>
+          <mat-card-subtitle>{{postsObj.title}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="data:image/png;base64,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" 
+        [alt]="postsObj.title">
+        <mat-card-content>
+          <p class="para">
+            {{postsObj.content}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="d-flex justify-content-between">
+            <button mat-mini-fab color="primary" routerLink="edit"><mat-icon>edit</mat-icon></button>
+            <button mat-mini-fab color="primary" (click)="onPostsRemove()"><mat-icon>delete</mat-icon></button>
+          </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<ng-template #noPostsObj>
+  <p class="alert alert-warning">
+    No Posts Data Available
+  </p>
+</ng-template>

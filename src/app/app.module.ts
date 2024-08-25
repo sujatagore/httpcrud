@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,6 +11,10 @@ import { PostscardComponent } from './shared/components/postscard/postscard.comp
 import { PostformComponent } from './shared/components/postform/postform.component';
 import { PostComponent } from './shared/components/post/post.component';
 import { PagenotfoundComponent } from './shared/components/pagenotfound/pagenotfound.component';
+import { MaterialModule } from './shared/material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmComponent } from './shared/components/confirm/confirm.component';
+import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -19,14 +24,24 @@ import { PagenotfoundComponent } from './shared/components/pagenotfound/pagenotf
     PostscardComponent,
     PostformComponent,
     PostComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

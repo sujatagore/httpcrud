@@ -1,1 +1,41 @@
-<p>postform works!</p>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <mat-card>
+            <mat-card-header>
+                <h3>
+                    {{isinEditMode ? 'Update Post' : 'Add Post'}}
+                </h3>
+            </mat-card-header>
+            <mat-card-content>
+                <form [formGroup]="postsForm" (ngSubmit)="onAddPosts()">
+                    <mat-form-field class="full-width" appearance="legacy">
+                        <mat-label>Title</mat-label>
+                        <input matInput type="text" formControlName="title">
+                    </mat-form-field>
+        
+                    <mat-form-field class="full-width" appearance="legacy">
+                        <mat-label>Content</mat-label>
+                        <textarea matInput formControlName="content" rows="3"></textarea>
+                    </mat-form-field>
+        
+                    <mat-form-field class="full-width" appearance="legacy">
+                        <mat-label>User Id</mat-label>
+                        <!-- <input matInput type="text" formControlName="userId"> -->
+                         <mat-select formControlName="userId">
+                            <mat-option *ngFor="let n of [1,2,3,4,5,6,7,8,9,10]" [value]="n">
+                                {{n}}
+                            </mat-option>
+                         </mat-select>
+                    </mat-form-field>
+
+                    <button type="submit" mat-flat-button color="primary" class="btn-block" *ngIf="!isinEditMode">Add Posts</button>
+
+                    <button type="button" mat-flat-button color="primary" class="btn-block" 
+                    *ngIf="isinEditMode"
+                    (click)="onPostsUpdate()">Update Posts</button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

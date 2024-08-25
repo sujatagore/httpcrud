@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-postscard',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./postscard.component.scss']
 })
 export class PostscardComponent implements OnInit {
+
+  @Input() postObj : any
 
   constructor() { }
 
